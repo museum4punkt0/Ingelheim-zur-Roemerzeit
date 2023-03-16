@@ -7,6 +7,9 @@ import SpriteKit
 extension Panorama {
     class View: UIView {
 
+        var onHotspotTap: ((Panorama.ImageHotspot) -> Void)?
+        typealias Tag = Int
+
         private var image: UIImage? {
             didSet {
                 self.panoramaType = image?.panoramaType ?? .cylindrical
@@ -48,6 +51,8 @@ extension Panorama {
             let sceneView = SCNView()
             sceneView.scene = scene
             sceneView.backgroundColor = self.backgroundColor
+            let tap = UITapGestureRecognizer(target: self, action: #selector(sceneViewTapped(_:)))
+            sceneView.addGestureRecognizer(tap)
             return sceneView
         }()
 
@@ -91,6 +96,8 @@ extension Panorama {
             }
         }
 
+        private var hotspotsByIdentifier: [String: ImageHotspot] = [:]
+
         // MARK: - inititializer
         init(image: UIImage) {
             super.init(frame: .zero)
@@ -117,10 +124,6 @@ extension Panorama {
 
         func setImage(_ image: UIImage) {
             self.image = image
-        }
-
-        func addHotspotNode(_ hotspotNode: SCNNode) {
-            geometryNode?.addChildNode(hotspotNode)
         }
     }
 }
@@ -172,6 +175,20 @@ private extension Panorama.View {
         }
         geometryNode?.rotation = SCNQuaternion(0, 1, 0, angleOffset)
         scene.rootNode.addChildNode(geometryNode!)
+    }
+
+    @objc private func sceneViewTapped(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            let location: CGPoint = sender.location(in: sceneView)
+            let hits = self.sceneView.hitTest(location, options: nil)
+            if !hits.isEmpty{
+                let tappedNode = hits.first?.node
+
+                if let name = tappedNode?.name, let hotspot = hotspotsByIdentifier[name] {
+                    onHotspotTap?(hotspot)
+                }
+            }
+        }
     }
 
     func startMotionUpdates(){
@@ -230,6 +247,56 @@ private extension Panorama.View {
                 }
             }
         )
+    }
+}
+
+// MARK: - hotspot support
+extension Panorama.View {
+    func addHotspots(_ hotspots: [Panorama.ImageHotspot], color: UIColor) {
+        hotspots.enumerated().forEach { index, hotspot in
+            addHotspot(hotspot, tag: index, color: color)
+        }
+    }
+
+    private func addHotspot(_ hotspot: Panorama.ImageHotspot, tag: Tag, color: UIColor) {
+        let hotspotNode = createHotspotNode(hotspot, tag: tag, color: color)
+        let identifier = UUID().description
+        hotspotNode.name = identifier
+        geometryNode?.addChildNode(hotspotNode)
+        self.hotspotsByIdentifier[identifier] = hotspot
+    }
+
+    private func createHotspotNode(_ hotspot: Panorama.ImageHotspot, tag: Tag, color: UIColor) -> SCNNode {
+        let radius: Double = 10
+
+        let button = Panorama.HotspotButton(
+            configuration: .init(backgroundColor: color, tintColor: .white),
+            frame: CGRect(origin: .zero, size: CGSize(width: 40, height: 40))
+        )
+        button.tag = tag
+        let config = UIImage.SymbolConfiguration(pointSize: 20)
+        let videoImage = UIImage(systemName: "play.fill", withConfiguration: config)
+        button.setImage(videoImage, for: [])
+        let material = SCNMaterial()
+
+        let size: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 5 : 3.5
+        let hotspotGeometry = SCNBox(width: size, height: size, length: size, chamferRadius: 0.8)
+        let hotspotNode = SCNNode(geometry: hotspotGeometry)
+        hotspotNode.scale = SCNVector3(0.2, 0.2, 0.2)
+         material.diffuse.contents = button
+        hotspotNode.geometry?.materials = [material]
+
+        // set hotspot's axes equal to camera
+        let billboardConstraint = SCNBillboardConstraint()
+        billboardConstraint.freeAxes = [.X, .Y, .Z]
+        hotspotNode.constraints = [billboardConstraint]
+
+        // set hotspot position
+        let imageCoordinates = ImageCoordinates(x: hotspot.xPosition, y: hotspot.yPosistion)
+        let position = imageCoordinates.positionVector(radius: radius)
+        hotspotNode.position = position
+
+        return hotspotNode
     }
 }
 

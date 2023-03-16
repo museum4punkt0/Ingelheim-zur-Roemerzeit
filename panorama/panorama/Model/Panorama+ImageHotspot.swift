@@ -2,9 +2,9 @@ import Foundation
 
 extension Panorama {
     public struct ImageHotspot {
-        let xPosition: Double
-        let yPosistion: Double
-        let videoFilename: String
+        public let xPosition: Double
+        public let yPosistion: Double
+        public let videoFilename: String
 
         public init(xPosition: Double, yPosistion: Double, videoFilename: String) {
             self.xPosition = xPosition

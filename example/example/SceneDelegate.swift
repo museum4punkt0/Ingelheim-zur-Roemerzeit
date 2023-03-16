@@ -1,27 +1,15 @@
 import UIKit
-import panorama
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var rootComposer: RootComposer?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window.windowScene = windowScene
-
-        let exampleConfiguration = Panorama.Configuration(
-            imageFilename: "image",
-            accentColor: UIColor.systemRed,
-            hotspots: [
-                Panorama.ImageHotspot(xPosition: 0.5, yPosistion: 0.4, videoFilename: "video")
-            ]
-        )
-
-        window.rootViewController = Panorama.Controller(
-            configuration: exampleConfiguration
-        )
-        window.makeKeyAndVisible()
+        self.rootComposer = RootComposer(window: window)
         self.window = window
     }
 
@@ -55,4 +43,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-
