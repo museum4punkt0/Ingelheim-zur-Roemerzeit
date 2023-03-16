@@ -9,7 +9,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window.windowScene = windowScene
-        window.rootViewController = Panorama.Controller()
+
+        let exampleConfiguration = Panorama.Configuration(
+            imageFilename: "image",
+            accentColor: UIColor.systemRed,
+            hotspots: [
+                Panorama.ImageHotspot(xPosition: 0.5, yPosistion: 0.4, videoFilename: "video")
+            ]
+        )
+
+        window.rootViewController = Panorama.Controller(
+            configuration: exampleConfiguration
+        )
         window.makeKeyAndVisible()
         self.window = window
     }

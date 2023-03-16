@@ -118,6 +118,10 @@ extension Panorama {
         func setImage(_ image: UIImage) {
             self.image = image
         }
+
+        func addHotspotNode(_ hotspotNode: SCNNode) {
+            geometryNode?.addChildNode(hotspotNode)
+        }
     }
 }
 
@@ -134,8 +138,7 @@ private extension Panorama.View {
             sceneView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
-
-
+  
     func createGeometryNode() {
         guard let image = image else {return}
 
@@ -183,13 +186,11 @@ private extension Panorama.View {
                 guard let panoramaView = self else {return}
                 guard !panoramaView.motionPaused else {return}
 
-
                 guard let motionData = motionData else {
                     print("\(String(describing: error?.localizedDescription))")
                     panoramaView.motionManager.stopDeviceMotionUpdates()
                     return
                 }
-
 
                 DispatchQueue.main.async {
                     if panoramaView.panoramaType == .cylindrical {
@@ -227,9 +228,8 @@ private extension Panorama.View {
 
                     }
                 }
-            })
+            }
+        )
     }
-
-
 }
 
