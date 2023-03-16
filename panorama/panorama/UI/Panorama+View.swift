@@ -7,7 +7,7 @@ import SpriteKit
 extension Panorama {
     class View: UIView {
 
-        var onHotspotTap: ((Panorama.ImageHotspot) -> Void)?
+        var onHotspotTap: ((Panorama.Hotspot) -> Void)?
         typealias Tag = Int
 
         private var image: UIImage? {
@@ -96,7 +96,7 @@ extension Panorama {
             }
         }
 
-        private var hotspotsByIdentifier: [String: ImageHotspot] = [:]
+        private var hotspotsByIdentifier: [String: Hotspot] = [:]
 
         // MARK: - inititializer
         init(image: UIImage) {
@@ -252,13 +252,13 @@ private extension Panorama.View {
 
 // MARK: - hotspot support
 extension Panorama.View {
-    func addHotspots(_ hotspots: [Panorama.ImageHotspot], color: UIColor) {
+    func addHotspots(_ hotspots: [Panorama.Hotspot], color: UIColor) {
         hotspots.enumerated().forEach { index, hotspot in
             addHotspot(hotspot, tag: index, color: color)
         }
     }
 
-    private func addHotspot(_ hotspot: Panorama.ImageHotspot, tag: Tag, color: UIColor) {
+    private func addHotspot(_ hotspot: Panorama.Hotspot, tag: Tag, color: UIColor) {
         let hotspotNode = createHotspotNode(hotspot, tag: tag, color: color)
         let identifier = UUID().description
         hotspotNode.name = identifier
@@ -266,7 +266,7 @@ extension Panorama.View {
         self.hotspotsByIdentifier[identifier] = hotspot
     }
 
-    private func createHotspotNode(_ hotspot: Panorama.ImageHotspot, tag: Tag, color: UIColor) -> SCNNode {
+    private func createHotspotNode(_ hotspot: Panorama.Hotspot, tag: Tag, color: UIColor) -> SCNNode {
         let radius: Double = 10
 
         let button = Panorama.HotspotButton(

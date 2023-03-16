@@ -4,12 +4,12 @@ public extension Panorama {
     struct Configuration {
         let imageFilename: String
         let accentColor: UIColor
-        let hotspots: [Panorama.ImageHotspot]
+        let hotspots: [Panorama.Hotspot]
 
         public init(
             imageFilename: String,
             accentColor: UIColor,
-            hotspots: [Panorama.ImageHotspot]
+            hotspots: [Panorama.Hotspot]
         ) {
             self.imageFilename = imageFilename
             self.accentColor = accentColor

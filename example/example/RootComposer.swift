@@ -12,7 +12,7 @@ class RootComposer {
             imageFilename: "image",
             accentColor: UIColor.systemRed,
             hotspots: [
-                Panorama.ImageHotspot(xPosition: 0.5, yPosistion: 0.4, videoFilename: "video")
+                Panorama.Hotspot(xPosition: 0.5, yPosistion: 0.4, videoFilename: "video")
             ]
         )
 
@@ -26,7 +26,7 @@ class RootComposer {
 }
 
 extension RootComposer: PanoramaControllerDelegate {
-    func panoramaController(_ controller: panorama.Panorama.Controller, didTapHotspot hotspot: panorama.Panorama.ImageHotspot) {
+    func panoramaController(_ controller: panorama.Panorama.Controller, didTapHotspot hotspot: panorama.Panorama.Hotspot) {
         showVideo(filename: hotspot.videoFilename, presenter: controller)
 
     }

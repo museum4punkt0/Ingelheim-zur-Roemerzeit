@@ -1,7 +1,7 @@
 import Foundation
 
 extension Panorama {
-    public struct ImageHotspot {
+    public struct Hotspot {
         public let xPosition: Double
         public let yPosistion: Double
         public let videoFilename: String
