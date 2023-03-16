@@ -1,11 +1,5 @@
-//
-//  SceneDelegate.swift
-//  example
-//
-//  Created by Bastian van de Wetering on 16.03.23.
-//
-
 import UIKit
+import panorama
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -15,7 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window.windowScene = windowScene
-        window.rootViewController = ViewController()
+        window.rootViewController = Panorama.Controller()
         window.makeKeyAndVisible()
         self.window = window
     }

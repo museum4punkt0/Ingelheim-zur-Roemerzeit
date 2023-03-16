@@ -1,10 +1,3 @@
-//
-//  exampleTests.swift
-//  exampleTests
-//
-//  Created by Bastian van de Wetering on 16.03.23.
-//
-
 import XCTest
 @testable import example
 
