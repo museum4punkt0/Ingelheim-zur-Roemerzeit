@@ -8,12 +8,8 @@ Durch 3D-Scans wurden diese Figuren dreidimensional und farbig rekonstruiert und
 Die Stifterin des Grabmonuments kann über einen Hotspot Button ausgewählt werden. Sie erzählt den App-Nutzer/innen aus ihrem Leben und vermittelt einen spannenden Einblick in die Gesellschaft zur Römerzeit.
 # Aufteilung
 Dieses Repository gibt Informationen zur Programmierung der Funktion "Aufruf 360 Grad Panorama" in der App Ingelheim zur Römerzeit. Hervorzuheben ist hierbei, dass die App beim Öffnen des 360 Grad Panoramas vor Ort anhand der Kompassdaten des Smartphones / Tablets den Blickwinkel der Nutzer/innen erkennt und automatisch den zum Blickwinkel passenden Ausschnitt des 360° Panoramas anzeigt. 
-# Entstehung
-Die native App Ingelheim zur Römerzeit auf Basis des Future History Frameworks ist im Rahmen des Verbundprojektes museum4punkt0 – Digitale Strategien für das Museum der Zukunft entstanden.
-# Förderung
-Die Realisierung der App "Ingelheim zur Römerzeit" wurde gefördert durch die Beauftragte der Bundesregierung für Kultur und Medien aufgrund eines Beschlusses des Deutschen Bundestages im Rahmen des Verbundprojektes museum4punkt0.   
-
-![alt text](https://github.com/museum4punkt0/media_storage/blob/2c46af6cb625a2560f39b01ecb8c4c360733811c/BKM_Fz_2017_Web_de.gif) ![alt text](https://github.com/museum4punkt0/media_storage/blob/e87f37973c3d91e2762d74d51bed81de5026e06e/BKM_Neustart_Kultur_Wortmarke_pos_RGB_RZ_web.jpg)
+# Entstehungskontext & Förderhinweis
+Die native App Ingelheim zur Römerzeit auf Basis des Future History Frameworks ist entstanden im Verbundprojekt museum4punkt0 – Digitale Strategien für das Museum der Zukunft, Teilprojekt AR-Panoramen – Mit dem Smartphone in die Römerzeit. Das Projekt museum4punkt0 wird gefördert durch die Beauftragte der Bundesregierung für Kultur und Medien aufgrund eines Beschlusses des Deutschen Bundestages. Weitere Informationen: https://www.museum4punkt0.de   
 
 Das Verbundprojekt museum4punkt0 wird geleitet und koordiniert von der Stiftung Preußischer Kulturbesitz.
 
