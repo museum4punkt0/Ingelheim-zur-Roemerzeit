@@ -13,6 +13,9 @@ Die native App Ingelheim zur Römerzeit auf Basis des Future History Frameworks 
 
 Das Verbundprojekt museum4punkt0 wird geleitet und koordiniert von der Stiftung Preußischer Kulturbesitz.
 
+![Bild 1](Assets/Logo-links)
+![Bild 2](Assets/Logo-rechts)
+
 # Dokumentation der Programmierung
 Die technische Entwicklung der Funktion "Aufruf 360 Grad Panorama" erfolgte nativ in den Programmiersprachen SWIFT für die iOS Version sowie Kotlin für die Android Version. Diese Funktion ist eingebettet in die Codebasis der unter dem Markennamen "Future History" in mehrjähriger Entwicklungsarbeit entstandenen Technologie (Webportal: http://www.future-history.eu, Play Store / App Store: Future History APP). Aus dieser Codebasis wurden die Tour Detailansicht zum Start der Tour, die Kartenansicht zur Selektion und zum Aufruf einer Station, die Navigation zum Zielpunkt sowie die Stationsdetailansicht übernommen und optisch auf das Corporate Design des Museums bei der Kaiserpfalz und der Stadt Ingelheim angepasst. Weitere wichtige Funktionen der App wie Offline-Funktionalität und Mehrsprachigkeit wurden ebefalls aus der vorhandenen Codebasis übernommen. Somit konnte die App Ingelheim zur Römerzeit unter Berücksichtigung des vorhandenen Budgets mit einer großen Funktionsvielfalt und dennoch zu einem sehr wirtschaftlichen Preis erstellt werden.  
 
